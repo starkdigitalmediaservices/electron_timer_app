@@ -1,3 +1,4 @@
+
 // Function to handle the API call for Daily Task
 async function fetchDailyTaskData() {
   const myHeaders = new Headers();
@@ -112,51 +113,6 @@ function displayTasks(tasks) {
     });
   }
   
-  // Timer State
-//   const timers = {};
-  
-//   // Function to Start Timer
-//   function startTimer(taskId) {
-//     if (!timers[taskId]) {
-//       timers[taskId] = { interval: null, elapsedTime: 0 };
-//     }
-  
-//     if (!timers[taskId].interval) {
-//       timers[taskId].interval = setInterval(() => {
-//         timers[taskId].elapsedTime++;
-//         updateTimerDisplay(taskId);
-//       }, 1000);
-//     }
-//   }
-  
-//   // Function to Pause Timer
-//   function pauseTimer(taskId) {
-//     if (timers[taskId] && timers[taskId].interval) {
-//       clearInterval(timers[taskId].interval);
-//       timers[taskId].interval = null;
-//     }
-//   }
-  
-//   // Function to Stop Timer
-//   function stopTimer(taskId) {
-//     if (timers[taskId]) {
-//       clearInterval(timers[taskId].interval);
-//       timers[taskId].interval = null;
-//       timers[taskId].elapsedTime = 0;
-//       updateTimerDisplay(taskId); // Reset timer display
-//     }
-//   }
-  
-//   // Function to Update Timer Display
-//   function updateTimerDisplay(taskId) {
-//     const timerDisplay = document.getElementById(`timer-${taskId}`);
-//     if (timerDisplay) {
-//       const seconds = timers[taskId].elapsedTime % 60;
-//       const minutes = Math.floor(timers[taskId].elapsedTime / 60) % 60;
-//       const hours = Math.floor(timers[taskId].elapsedTime / 3600);
-//       timerDisplay.textContent = `Timer: ${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
-//     }
-//   }
 
 // Timer State
 const timers = {};
