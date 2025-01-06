@@ -32,6 +32,55 @@ export const DailyTasks: React.FC = () => {
     return () => clearInterval(timerRef.current);
   }, []);
 
+  function persistTaskState(task) {
+    localStorage.setItem('activeTask', JSON.stringify(task));
+  }
+  
+  // function loadPersistedTask() {
+  //   const task = JSON.parse(localStorage.getItem('activeTask'));
+  //   console.log('loadPersistedTask task: ', task);
+  //   if (task) {
+  //     setActiveTaskId(task.id);
+  //     setElapsedTime(Date.now() - new Date(task.startTime).getTime());
+  //     setStartTime(new Date(task.startTime));
+  //     console.log('new Date(task.startTime: ', new Date(task.startTime));
+  //   }
+  // }
+
+  function loadPersistedTask() {
+    const task = JSON.parse(localStorage.getItem('activeTask'));
+    console.log('loadPersistedTask task: ', task);
+  
+    if (task) {
+      try {
+        // Remove the 'Z' from start_date and append start_time
+        const dateWithoutTimezone = task.start_date.replace('Z', '');
+        const combinedDateTimeString = `${dateWithoutTimezone.split('T')[0]}T${task.start_time}:00`;
+        console.log('Combined DateTime String: ', combinedDateTimeString);
+  
+        // Create a new Date object
+        const startDateTime = new Date(combinedDateTimeString);
+        
+        if (!isNaN(startDateTime.getTime())) {
+          setActiveTaskId(task.id);
+          setElapsedTime(Date.now() - startDateTime.getTime());
+          setStartTime(startDateTime);
+          console.log('Valid startDateTime: ', startDateTime);
+        } else {
+          console.error('Invalid Date after combining start_date and start_time');
+        }
+      } catch (error) {
+        console.error('Error combining start_date and start_time: ', error);
+      }
+    }
+  }
+  
+  
+  useEffect(() => {
+    loadPersistedTask();
+  }, []);
+  
+
   async function fetchDailyTasks() {
     const dailyTasks = await getDailyTasks();
     console.log('dailyTasks: ', dailyTasks.data);
@@ -226,9 +275,9 @@ export const DailyTasks: React.FC = () => {
             <p className="text-gray-600">{task.description}</p>
             <div className="mt-2 flex items-center space-x-2">
               { 
-              // activeTaskId === task.id && 
-              // task.time_entries_status == 1 ? (
-                activeTaskId === task.id ? (
+              activeTaskId === task.id && 
+              task.time_entries_status == 1 ? (
+                // activeTaskId === task.id ? (
                 <>
                   {/* {isPaused ? (
                 <button
@@ -286,12 +335,15 @@ export const DailyTasks: React.FC = () => {
                   //   // handleStartTask(task.id);
                   // }}
                   onClick={() =>
+                  {
                     handleStartTaskBtn(
                       task.id,
                       task.start_date,
                       task.description,
                       task.time_entries_status
                     )
+                    persistTaskState(task)
+                  }
                   }
                   className="bg-blue-500 text-black px-4 py-2 rounded"
                 >

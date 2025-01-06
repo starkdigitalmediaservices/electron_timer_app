@@ -9,7 +9,7 @@ const api = axios.create({
   baseURL: BASE_URL,
   headers: {
     'Content-Type': 'application/json',
-    Authorization: 'Bearer 4DdvB3vYb5zncNuK7em3vdTwofbHuh',
+    Authorization: 'Bearer gBujppYVDDkUBbUSTdfu78QZEmLJEk',
   },
 });
 
@@ -42,7 +42,7 @@ export async function getTasks() {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer 4DdvB3vYb5zncNuK7em3vdTwofbHuh'
+        'Authorization': 'Bearer gBujppYVDDkUBbUSTdfu78QZEmLJEk'
       },
       withCredentials: true,  // Add this line if required
     });
