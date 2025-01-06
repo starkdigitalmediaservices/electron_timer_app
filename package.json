@@ -1,0 +1,21 @@
+{
+  "name": "pms-desktop",
+  "version": "0.0.1",
+  "description": "This pms desktop app",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron .",
+    "dev:watch" : "npx electronmon --trace-warnings ."
+  },
+  "keywords": [
+    "electron",
+    "reactjs",
+    "typescript"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "electron": "^33.2.1"
+  }
+}
