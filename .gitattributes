@@ -1,0 +1,4 @@
+*.exe filter=lfs diff=lfs merge=lfs -text
+*.desktop filter=lfs diff=lfs merge=lfs -text
+*dist filter=lfs diff=lfs merge=lfs -text
+dist/pms-desktop-linux-x64/pms-desktop filter=lfs diff=lfs merge=lfs -text
