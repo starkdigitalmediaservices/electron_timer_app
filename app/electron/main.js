@@ -23,6 +23,7 @@ function createMainWindow() {
     });
 
     mainWindow.loadURL('http://localhost:3000');
+    // mainWindow.loadFile(path.join(__dirname, '..', 'build', 'index.html'));
 }
 
 app.whenReady().then(createMainWindow);

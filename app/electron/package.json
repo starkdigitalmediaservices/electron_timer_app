@@ -1,0 +1,38 @@
+{
+  "name": "pms-desktop",
+  "version": "0.0.1",
+  "description": "This pms desktop app",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \\\"Error: no test specified\\\" && exit 1",
+    "start": "electron .",
+    "dev:watch": "npx electronmon --trace-warnings main.js",
+    "build": "npm --prefix .. run build",
+    "build:electron": "electron-builder",
+    "build:all": "npm run build && npm run build:electron"
+  },
+  "build": {
+    "extends": null,
+    "files": [
+      "build/electron.js",
+      "electron/main.js",
+      "electron/preload.js",
+      "electron/package.json",
+      "node_modules",
+      "build"
+    ]
+  },
+  "keywords": [
+    "electron",
+    "reactjs",
+    "typescript"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^33.3.1",
+    "electron-builder": "^24.13.3",
+    "electronmon": "^2.0.3",
+    "react-scripts": "^5.0.1"
+  }
+}

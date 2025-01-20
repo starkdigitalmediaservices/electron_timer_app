@@ -1,0 +1,13 @@
+directories:
+  output: dist
+  buildResources: build
+extends: null
+files:
+  - filter:
+      - build/electron.js
+      - electron/main.js
+      - electron/preload.js
+      - electron/package.json
+      - node_modules
+      - build
+electronVersion: 33.3.1
