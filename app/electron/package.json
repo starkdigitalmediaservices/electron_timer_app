@@ -4,23 +4,45 @@
   "description": "This pms desktop app",
   "main": "main.js",
   "scripts": {
-    "test": "echo \\\"Error: no test specified\\\" && exit 1",
     "start": "electron .",
-    "dev:watch": "npx electronmon --trace-warnings main.js",
-    "build": "npm --prefix .. run build",
+    "dev:watch": "npx electronmon --trace-warnings .",
+    "build:react": "cd ./ && cd ../electron && cd ../app && npm run build",
     "build:electron": "electron-builder",
-    "build:all": "npm run build && npm run build:electron"
+    "build:all": "npm run build:react && npm run build:electron"
   },
   "build": {
+    "appId": "com.pmsDesktop",
+    "productName": "pmsDesktop",
     "extends": null,
+    "asar": true,
+    "asarUnpack": [],
     "files": [
-      "build/electron.js",
-      "electron/main.js",
-      "electron/preload.js",
-      "electron/package.json",
+      "main.js",
       "node_modules",
-      "build"
-    ]
+      "preload.js",
+      "package.json"
+    ],
+    "extraFiles": [
+      {
+        "from": "./node_modules/electron/dist/ffmpeg.dll",
+        "to": "ffmpeg.dll"
+      }
+    ],
+    "directories": {
+      "output": "dist"
+    },
+    "mac": {
+      "target": "dmg"
+    },
+    "win": {
+      "target": "nsis",
+      "icon": "../assets/icon.ico",
+      "sign": null
+    },
+    "linux": {
+      "target": "AppImage",
+      "icon": "../assets"
+    }
   },
   "keywords": [
     "electron",
@@ -31,7 +53,7 @@
   "license": "ISC",
   "devDependencies": {
     "electron": "^33.3.1",
-    "electron-builder": "^24.13.3",
+    "electron-builder": "^24.8.0",
     "electronmon": "^2.0.3",
     "react-scripts": "^5.0.1"
   }
