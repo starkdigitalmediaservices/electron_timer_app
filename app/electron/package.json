@@ -6,21 +6,24 @@
   "scripts": {
     "start": "electron .",
     "dev:watch": "npx electronmon --trace-warnings .",
-    "build:react": "cd .. && npm --prefix ./ run build-react",
+    "build:react": "cd .. && npm run build",
     "build:electron": "electron-builder",
-    "build:all": "npm run build:react && npm run build:electron"
+    "build:all": "npm run build:react && npm run build:electron",
+    "dev": "NODE_ENV=development electron .",
+    "prod": "NODE_ENV=production electron ."
   },
   "build": {
     "appId": "com.pmsDesktop",
     "productName": "pmsDesktop",
     "extends": null,
-    "asar": true,
+    "asar": false,
     "asarUnpack": [],
     "files": [
       "main.js",
       "node_modules",
       "preload.js",
-      "package.json"
+      "package.json",
+      "app/build/**/*" 
     ],
     "extraFiles": [
       {
