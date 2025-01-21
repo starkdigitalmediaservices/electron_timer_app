@@ -6,7 +6,7 @@
   "scripts": {
     "start": "electron .",
     "dev:watch": "npx electronmon --trace-warnings .",
-    "build:react": "cd ./ && cd ../electron && cd ../app && npm run build",
+    "build:react": "cd .. && npm --prefix ./ run build-react",
     "build:electron": "electron-builder",
     "build:all": "npm run build:react && npm run build:electron"
   },
